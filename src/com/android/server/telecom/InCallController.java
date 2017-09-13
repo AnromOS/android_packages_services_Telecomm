@@ -845,6 +845,10 @@ public final class InCallController extends CallsManagerListenerBase {
                             (call != null ? call.toString() :"null"),
                             (event != null ? event : "null") ,
                             (extras != null ? extras.toString() : "null"));
+                    Log.d(this, "jin notifyConnectionEvent {Call: %s, Event: %s, Exttras:[%s]}",
+                            (call != null ? call.toString() :"null"),
+                            (event != null ? event : "null") ,
+                            (extras != null ? extras.toString() : "null"));
                     inCallService.onConnectionEvent(mCallIdMapper.getCallId(call), event, extras);
                 } catch (RemoteException ignored) {
                 }
@@ -1159,6 +1163,9 @@ public final class InCallController extends CallsManagerListenerBase {
     private void updateCall(Call call, boolean videoProviderChanged) {
         if (!mInCallServices.isEmpty()) {
             Log.i(this, "Sending updateCall %s", call);
+            Log.i(this, "jin InCallController.java updateCall test-----------");
+            Log.i(this, "jin InCallController.java updateCall {Call: %s}",
+                        (call != null ? call.toString() :"null"));
             List<ComponentName> componentsUpdated = new ArrayList<>();
             for (Map.Entry<InCallServiceInfo, IInCallService> entry : mInCallServices.entrySet()) {
                 InCallServiceInfo info = entry.getKey();
