@@ -756,6 +756,7 @@ public final class InCallController extends CallsManagerListenerBase {
 
     @Override
     public void onCallStateChanged(Call call, int oldState, int newState) {
+        Log.d("jin","jin InCallController.java onCallStateChanged calling function updateCall");
         updateCall(call);
     }
 
@@ -842,10 +843,6 @@ public final class InCallController extends CallsManagerListenerBase {
             for (IInCallService inCallService : mInCallServices.values()) {
                 try {
                     Log.i(this, "notifyConnectionEvent {Call: %s, Event: %s, Extras:[%s]}",
-                            (call != null ? call.toString() :"null"),
-                            (event != null ? event : "null") ,
-                            (extras != null ? extras.toString() : "null"));
-                    Log.d(this, "jin notifyConnectionEvent {Call: %s, Event: %s, Exttras:[%s]}",
                             (call != null ? call.toString() :"null"),
                             (event != null ? event : "null") ,
                             (extras != null ? extras.toString() : "null"));
@@ -1162,8 +1159,6 @@ public final class InCallController extends CallsManagerListenerBase {
      */
     private void updateCall(Call call, boolean videoProviderChanged) {
         if (!mInCallServices.isEmpty()) {
-            Log.i(this, "Sending updateCall %s", call);
-            Log.i(this, "jin InCallController.java updateCall test-----------");
             Log.i(this, "jin InCallController.java updateCall {Call: %s}",
                         (call != null ? call.toString() :"null"));
             List<ComponentName> componentsUpdated = new ArrayList<>();
