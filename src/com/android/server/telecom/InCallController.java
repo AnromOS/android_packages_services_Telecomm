@@ -1159,8 +1159,8 @@ public final class InCallController extends CallsManagerListenerBase {
      */
     private void updateCall(Call call, boolean videoProviderChanged) {
         if (!mInCallServices.isEmpty()) {
-            Log.i(this, "jin InCallController.java updateCall {Call: %s}",
-                        (call != null ? call.toString() :"null"));
+            //~ Log.i(this, "jin InCallController.java updateCall {Call: %s}",
+                        //~ (call != null ? call.toString() :"null"));
             List<ComponentName> componentsUpdated = new ArrayList<>();
             for (Map.Entry<InCallServiceInfo, IInCallService> entry : mInCallServices.entrySet()) {
                 InCallServiceInfo info = entry.getKey();
