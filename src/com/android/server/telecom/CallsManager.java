@@ -2054,6 +2054,11 @@ public class CallsManager extends Call.ListenerBase
         return mPhoneStateBroadcaster.getCallState();
     }
 
+    //add by rom - jin
+    int getRealCallState() {
+        return mPhoneStateBroadcaster.getRealCallState();
+    }
+
     /**
      * Retrieves the {@link PhoneAccountRegistrar}.
      *
@@ -2168,6 +2173,8 @@ public class CallsManager extends Call.ListenerBase
         }
         int oldState = call.getState();
         Log.i(this, "setCallState %s -> %s, call: %s", CallState.toString(oldState),
+                CallState.toString(newState), call);
+        Log.i(this, "jin telecom setCallState %s -> %s, call: %s", CallState.toString(oldState),
                 CallState.toString(newState), call);
         if (newState != oldState) {
             // Unfortunately, in the telephony world the radio is king. So if the call notifies

@@ -31,6 +31,7 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
     private final CallsManager mCallsManager;
     private final ITelephonyRegistry mRegistry;
     private int mCurrentState = TelephonyManager.CALL_STATE_IDLE;
+    private int mRealCurrentState;;
 
     public PhoneStateBroadcaster(CallsManager callsManager) {
         mCallsManager = callsManager;
@@ -97,12 +98,20 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
         return mCurrentState;
     }
 
+    //add by rom - jin
+    int getRealCallState() {
+        return mRealCurrentState;
+    }
+
     private void sendPhoneStateChangedBroadcast(Call call, int phoneState) {
         if (phoneState == mCurrentState) {
             return;
         }
 
         mCurrentState = phoneState;
+
+        //add by rom - jin
+        mRealCurrentState = call.getState();
 
         String callHandle = null;
         if (call.getHandle() != null) {
@@ -112,9 +121,11 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
         try {
             if (mRegistry != null) {
                 mRegistry.notifyCallState(phoneState, callHandle);
+
                 //add by rom -jin
                 mRegistry.notifyRealCallState(call.getState(), callHandle);
                 Log.i(this, "jin noti PhoneStateBroadcaster Broadcasted state change: %s", mCurrentState);
+                Log.i(this, "Broadcasted state change: %s", mCurrentState);
             }
         } catch (RemoteException e) {
             Log.w(this, "RemoteException when notifying TelephonyRegistry of call state change.");
