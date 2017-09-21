@@ -31,6 +31,7 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
     private final CallsManager mCallsManager;
     private final ITelephonyRegistry mRegistry;
     private int mCurrentState = TelephonyManager.CALL_STATE_IDLE;
+    private int mRealCurrentState;;
 
     public PhoneStateBroadcaster(CallsManager callsManager) {
         mCallsManager = callsManager;
@@ -97,12 +98,20 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
         return mCurrentState;
     }
 
+    //add by rom - jin
+    int getRealCallState() {
+        return mRealCurrentState;
+    }
+
     private void sendPhoneStateChangedBroadcast(Call call, int phoneState) {
         if (phoneState == mCurrentState) {
             return;
         }
 
         mCurrentState = phoneState;
+
+        //add by rom - jin
+        mRealCurrentState = call.getState();
 
         String callHandle = null;
         if (call.getHandle() != null) {

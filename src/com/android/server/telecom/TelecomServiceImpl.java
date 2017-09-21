@@ -702,7 +702,7 @@ public class TelecomServiceImpl {
          * add by rom - jin
          * @see TelecomManager#getRealCallState
          */
-        //~ @Override
+        @Override
         public int getRealCallState() {
             try {
                 Log.startSession("TSI.getRealCallState");
