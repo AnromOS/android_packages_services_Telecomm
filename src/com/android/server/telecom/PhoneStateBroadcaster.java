@@ -112,7 +112,9 @@ final class PhoneStateBroadcaster extends CallsManagerListenerBase {
         try {
             if (mRegistry != null) {
                 mRegistry.notifyCallState(phoneState, callHandle);
-                Log.i(this, "Broadcasted state change: %s", mCurrentState);
+                //add by rom -jin
+                mRegistry.notifyRealCallState(call.getState(), callHandle);
+                Log.i(this, "jin noti PhoneStateBroadcaster Broadcasted state change: %s", mCurrentState);
             }
         } catch (RemoteException e) {
             Log.w(this, "RemoteException when notifying TelephonyRegistry of call state change.");
