@@ -2055,9 +2055,9 @@ public class CallsManager extends Call.ListenerBase
     }
 
     //add by rom - jin
-    int getRealCallState() {
-        return mPhoneStateBroadcaster.getRealCallState();
-    }
+    //~ int getRealCallState() {
+        //~ return mPhoneStateBroadcaster.getRealCallState();
+    //~ }
 
     /**
      * Retrieves the {@link PhoneAccountRegistrar}.

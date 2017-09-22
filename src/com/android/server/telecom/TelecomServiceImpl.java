@@ -702,17 +702,17 @@ public class TelecomServiceImpl {
          * add by rom - jin
          * @see TelecomManager#getRealCallState
          */
-        @Override
-        public int getRealCallState() {
-            try {
-                Log.startSession("TSI.getRealCallState");
-                synchronized (mLock) {
-                    return mCallsManager.getRealCallState();
-                }
-            } finally {
-                Log.endSession();
-            }
-        }
+        //~ @Override
+        //~ public int getRealCallState() {
+            //~ try {
+                //~ Log.startSession("TSI.getRealCallState");
+                //~ synchronized (mLock) {
+                    //~ return mCallsManager.getRealCallState();
+                //~ }
+            //~ } finally {
+                //~ Log.endSession();
+            //~ }
+        //~ }
 
         /**
          * @see android.telecom.TelecomManager#endCall

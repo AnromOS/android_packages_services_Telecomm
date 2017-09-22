@@ -596,6 +596,43 @@ public class Call implements CreateConnectionResponse {
         return mState;
     }
 
+    //add by rom - jin
+    @VisibleForTesting
+    public int getRealState() {
+        int state = getState();
+
+        switch (state) {
+            case NEW:
+            case CONNECTING:
+            case SELECT_PHONE_ACCOUNT:
+            case ABORTED:
+            case PULLING:
+                Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_IDLE);
+                return TelephonyManager.REAL_CALL_STATE_IDLE;
+            case DIALING:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DIALING);
+                return TelephonyManager.REAL_CALL_STATE_DIALING
+            case RINGING:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_RINGING);
+                return TelephonyManager.REAL_CALL_STATE_RINGING;
+            case ACTIVE:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_ACTIVE);
+                return TelephonyManager.REAL_CALL_STATE_ACTIVE;
+            case ON_HOLD:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_HOLDING);
+                return TelephonyManager.REAL_CALL_STATE_HOLDING;
+            case DISCONNECTED:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTED);
+                return TelephonyManager.REAL_CALL_STATE_DISCONNECTED;
+            case DISCONNECTING:
+            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTING);
+                return TelephonyManager.REAL_CALL_STATE_DISCONNECTING;
+            default:
+            Log.i(LOG_TAG,"jin noti pacCall state:default");
+                return TelephonyManager.REAL_CALL_STATE_IDLE;
+        }
+    }
+
     private boolean shouldContinueProcessingAfterDisconnect() {
         // Stop processing once the call is active.
         if (!CreateConnectionTimeout.isCallBeingPlaced(this)) {
