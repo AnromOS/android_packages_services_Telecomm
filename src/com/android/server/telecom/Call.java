@@ -60,6 +60,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+//add by rom
+import android.telephony.TelephonyManager;
+
 /**
  *  Encapsulates all aspects of a given phone call throughout its lifecycle, starting
  *  from the time the call intent was received by Telecom (vs. the time the call was
@@ -602,33 +605,33 @@ public class Call implements CreateConnectionResponse {
         int state = getState();
 
         switch (state) {
-            case NEW:
-            case CONNECTING:
-            case SELECT_PHONE_ACCOUNT:
-            case ABORTED:
-            case PULLING:
-                Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_IDLE);
+            case CallState.NEW:
+            case CallState.CONNECTING:
+            case CallState.SELECT_PHONE_ACCOUNT:
+            case CallState.ABORTED:
+            case CallState.PULLING:
+                Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_IDLE);
                 return TelephonyManager.REAL_CALL_STATE_IDLE;
-            case DIALING:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DIALING);
-                return TelephonyManager.REAL_CALL_STATE_DIALING
-            case RINGING:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_RINGING);
+            case CallState.DIALING:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DIALING);
+                return TelephonyManager.REAL_CALL_STATE_DIALING;
+            case CallState.RINGING:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_RINGING);
                 return TelephonyManager.REAL_CALL_STATE_RINGING;
-            case ACTIVE:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_ACTIVE);
+            case CallState.ACTIVE:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_ACTIVE);
                 return TelephonyManager.REAL_CALL_STATE_ACTIVE;
-            case ON_HOLD:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_HOLDING);
+            case CallState.ON_HOLD:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_HOLDING);
                 return TelephonyManager.REAL_CALL_STATE_HOLDING;
-            case DISCONNECTED:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTED);
+            case CallState.DISCONNECTED:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTED);
                 return TelephonyManager.REAL_CALL_STATE_DISCONNECTED;
-            case DISCONNECTING:
-            Log.i(LOG_TAG,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTING);
+            case CallState.DISCONNECTING:
+            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTING);
                 return TelephonyManager.REAL_CALL_STATE_DISCONNECTING;
             default:
-            Log.i(LOG_TAG,"jin noti pacCall state:default");
+            Log.i(this,"jin noti pacCall state:default");
                 return TelephonyManager.REAL_CALL_STATE_IDLE;
         }
     }
