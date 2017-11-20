@@ -610,28 +610,20 @@ public class Call implements CreateConnectionResponse {
             case CallState.SELECT_PHONE_ACCOUNT:
             case CallState.ABORTED:
             case CallState.PULLING:
-                Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_IDLE);
                 return TelephonyManager.REAL_CALL_STATE_IDLE;
             case CallState.DIALING:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DIALING);
                 return TelephonyManager.REAL_CALL_STATE_DIALING;
             case CallState.RINGING:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_RINGING);
                 return TelephonyManager.REAL_CALL_STATE_RINGING;
             case CallState.ACTIVE:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_ACTIVE);
                 return TelephonyManager.REAL_CALL_STATE_ACTIVE;
             case CallState.ON_HOLD:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_HOLDING);
                 return TelephonyManager.REAL_CALL_STATE_HOLDING;
             case CallState.DISCONNECTED:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTED);
                 return TelephonyManager.REAL_CALL_STATE_DISCONNECTED;
             case CallState.DISCONNECTING:
-            Log.i(this,"jin noti pacCall state:" + TelephonyManager.REAL_CALL_STATE_DISCONNECTING);
                 return TelephonyManager.REAL_CALL_STATE_DISCONNECTING;
             default:
-            Log.i(this,"jin noti pacCall state:default");
                 return TelephonyManager.REAL_CALL_STATE_IDLE;
         }
     }

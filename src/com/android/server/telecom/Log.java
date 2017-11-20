@@ -931,7 +931,6 @@ public class Log {
         if (pii instanceof Uri) {
             Uri uri = (Uri) pii;
             String scheme = uri.getScheme();
-            Log.d("jin","jin pak services Log.java piiHandler scheme:%s",scheme);
 
             if (!TextUtils.isEmpty(scheme)) {
                 sb.append(scheme).append(":");
@@ -939,25 +938,20 @@ public class Log {
 
             String textToObfuscate = uri.getSchemeSpecificPart();
             if (PhoneAccount.SCHEME_TEL.equals(scheme)) {
-                Log.d("jin","jin pak services Log.java piiHandle *1");
                 for (int i = 0; i < textToObfuscate.length(); i++) {
                     char c = textToObfuscate.charAt(i);
                     //~ sb.append(PhoneNumberUtils.isDialable(c) ? "*" : c);
-                    Log.d("jin","jin pak services Log.java piiHandle1 c:%c",c);
                     sb.append(c);
                 }
             } else if (PhoneAccount.SCHEME_SIP.equals(scheme)) {
-                Log.d("jin","jin pak services Log.java piiHandle *2");
                 for (int i = 0; i < textToObfuscate.length(); i++) {
                     char c = textToObfuscate.charAt(i);
-                    Log.d("jin","jin pak services Log.java piiHandle2 c:%c",c);
                     if (c != '@' && c != '.') {
                         c = '*';
                     }
                     sb.append(c);
                 }
             } else {
-                Log.d("jin","pak services Log.java piiHandle *3");
                 sb.append(pii(pii));
             }
         }
